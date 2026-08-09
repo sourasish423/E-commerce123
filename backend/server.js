@@ -21,8 +21,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
-const app = express();
-
 const allowedOrigins = [
   process.env.CLIENT_URL,
   "https://todo-app-spf3.vercel.app",
