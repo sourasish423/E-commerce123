@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-body antialiased text-body;
+  }
+  h1 {
+    @apply font-display text-page-title text-ink;
+  }
+  h2 {
+    @apply font-display text-section-title text-ink;
+  }
+  h3 {
+    @apply font-display text-card-title text-ink;
+  }
+  h4 {
+    @apply font-display text-base font-semibold text-ink;
+  }
+  p {
+    @apply text-body;
+  }
+  ::selection {
+    @apply bg-signal text-white;
+  }
+  :focus-visible {
+    outline: 2px solid #2F5DE3;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Signature element: garment/inventory-tag styling used for price + SKU labels */
+  .price-tag {
+    @apply relative inline-flex items-center gap-1 font-mono text-price border border-ink/15 bg-white px-2.5 py-1.5 rounded-sm;
+  }
+  .price-tag::before {
+    content: "";
+    @apply absolute -left-[5px] top-1/2 -translate-y-1/2 w-[9px] h-[9px] rounded-full bg-paper border border-ink/15;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-paper text-button px-5 py-3 rounded-sm hover:bg-signal transition-colors duration-150;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink text-button px-5 py-3 rounded-sm hover:border-ink transition-colors duration-150;
+  }
+  .input-field {
+    @apply w-full border border-ink/20 bg-white px-3.5 py-2.5 rounded-sm text-body-sm placeholder:text-slate-450 focus:border-ink outline-none transition-colors;
+  }
+  .label-eyebrow {
+    @apply font-mono text-label uppercase text-slate-450;
+  }
+}
