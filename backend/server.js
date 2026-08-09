@@ -22,20 +22,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 const allowedOrigins = [
-  process.env.CLIENT_URL,
+  "http://localhost:5173",
   "https://todo-app-spf3.vercel.app",
   "https://todo-app-spf3-git-master-sourasish423s-projects.vercel.app",
-].filter(Boolean);
+];
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true,
   })
 );
