@@ -1,6 +1,6 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/User.js";
-import generateToken from "../utils/generateToken.js";
+import generateToken, { jwtCookieOptions } from "../utils/generateToken.js";
 
 // @desc    Register a new user
 // @route   POST /api/auth/register
@@ -56,8 +56,11 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/logout
 // @access  Private
 const logoutUser = asyncHandler(async (req, res) => {
+  // Must match the options used in generateToken() exactly (secure, sameSite,
+  // path) — otherwise the browser doesn't recognize this as the same cookie
+  // and won't actually clear the user's session.
   res.cookie("jwt", "", {
-    httpOnly: true,
+    ...jwtCookieOptions,
     expires: new Date(0),
   });
   res.json({ message: "Logged out successfully" });
